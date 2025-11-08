@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard | Tempat Pembuangan Sampah & Peta GIS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="icon" href="assets/icons/favicon.png"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="#27ae60" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V5a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+        </svg>
+        Dashboard | Peta Persebaran Tempat Pembuangan Sampah
+      </div>
+      </a>
+      <div class="nav-links">
+        <a href="#home" class="active">Beranda</a>
+        <a href="#about">Tentang</a>
+        <a href="#chart-section">Statistik</a>
+        <a href="#map">Peta</a>
+        <a href="#contact">Kontak</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <img src="../assets/images/hero.jpg"
+         alt="Hero Background"
+         class="hero-bg"
+         onerror="this.onerror=null;this.src='https://via.placeholder.com/1920x1080/27ae60/fff?text=Hero+Image+Not+Found';">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Pengelolaan Sampah Modern</h1>
+      <p>Lokasi TPA terdekat + edukasi lingkungan dalam satu tempat.</p>
+      <a href="#map" class="btn">Lihat Peta</a>
+    </div>
+  </section>
+
+  <div class="container">
+
+    <!-- About -->
+    <section id="about">
+      <h2>Kenapa Sampah Harus Dikelola?</h2>
+      <div class="cards">
+        <div class="card">
+          <img src="../assets/images/3r.jpg" alt="3R">
+          <h3>3R: Reduce, Reuse, Recycle</h3>
+          <p>Langkah awal dalam pengelolaan sampah dimulai dari pemahaman 3R. Dengan mengurangi, menggunakan kembali, dan mendaur ulang, kita tidak hanya menekan volume sampah, tapi juga menciptakan data yang akurat untuk pemetaan sumber timbulan sampah di QGIS.</p>
+        </div>
+        <div class="card">
+          <img src="../assets/images/sorting.jpg" alt="Pemilahan">
+          <h3>Pilah dari Rumah</h3>
+          <p>Pemisahan sampah organik, anorganik, dan B3 sejak dari rumah membuat data pengumpulan menjadi lebih terstruktur. Melalui peta QGIS, titik-titik pengumpulan ini dapat divisualisasikan untuk memahami pola timbulan dan efektivitas sistem pengangkutan.</p>
+        </div>
+        <div class="card">
+          <img src="../assets/images/tpa.jpg" alt="TPA">
+          <h3>TPA Sanitari</h3>
+          <p>TPA menjadi titik akhir penting dalam siklus pengelolaan sampah. Dengan memetakan lokasi TPA secara digital menggunakan QGIS, kita dapat memantau persebaran, kapasitas, dan jarak antar lokasi pembuangan untuk mendukung kebijakan yang lebih tepat sasaran.</p>
+        </div>
+      </div>
+    </section>
+
+<!-- TERMINOLOGI SECTION -->
+<section id="terminologi" class="terminology-section">
+  <h2>Terminologi Pengelolaan Sampah</h2>
+  <p class="subtitle">Kenali istilah penting dalam sistem pengelolaan sampah di Samarinda</p>
+
+  <!-- Carousel -->
+  <div class="swiper terminology-swiper">
+    <div class="swiper-wrapper">
+
+      <div class="swiper-slide term-card" data-term="TPS" data-desc="Fasilitas penampungan sementara sampah sebelum diangkut ke TPST atau TPA. Biasanya berada di sekitar pemukiman untuk memudahkan warga.">
+        <h3>TPS</h3>
+        <p>Tempat Penampungan Sementara</p>
+      </div>
+
+      <div class="swiper-slide term-card" data-term="TPST" data-desc="Fasilitas pengolahan sampah terpadu yang melakukan pemilahan, daur ulang, dan pengolahan organik untuk mengurangi beban ke TPA.">
+        <h3>TPST</h3>
+        <p>Tempat Pengolahan Sampah Terpadu</p>
+      </div>
+
+      <div class="swiper-slide term-card" data-term="TPA" data-desc="Tempat pembuangan akhir bagi residu sampah yang tidak dapat didaur ulang. Dilengkapi sistem sanitari untuk menjaga lingkungan.">
+        <h3>TPA</h3>
+        <p>Tempat Pembuangan Akhir</p>
+      </div>
+
+      <div class="swiper-slide term-card" data-term="BSI" data-desc="Bank Sampah Induk yang menjadi pusat pengelolaan hasil daur ulang dari berbagai BSU di bawahnya.">
+        <h3>BSI</h3>
+        <p>Bank Sampah Induk</p>
+      </div>
+
+      <div class="swiper-slide term-card" data-term="BSU" data-desc="Bank Sampah Unit skala kecil di lingkungan RT/RW atau sekolah yang mengelola sampah anorganik masyarakat.">
+        <h3>BSU</h3>
+        <p>Bank Sampah Unit</p>
+      </div>
+
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div id="termLightbox" class="lightbox">
+  <div class="lightbox-content">
+    <span class="close">&times;</span>
+    <h2 id="lightbox-title"></h2>
+    <p id="lightbox-desc"></p>
+  </div>
+</div>
+
+
+    <!-- Statistik Chart -->
+<section class="chart-section" id="chart-section">
+  <div class="container">
+    <h2 class="section-title">
+      <i></i> Statistik Pengelolaan Sampah Samarinda
+    </h2>
+    <p class="section-subtitle">Data real-time dari 23 fasilitas aktif di 10 kecamatan</p>
+
+    <div class="chart-grid">
+      <!-- PIE CHART -->
+      <div class="chart-box glow">
+        <div class="chart-header">
+          <i class="fas fa-pie-chart"></i>
+          <h3>Proporsi Jenis Fasilitas</h3>
+        </div>
+        <canvas id="pieChart"></canvas>
+        <div class="chart-info">
+          <span class="highlight">TPS mendominasi 61%</span> dari total fasilitas
+        </div>
+      </div>
+
+      <!-- BAR CHART -->
+      <div class="chart-box glow">
+        <div class="chart-header">
+          <i class="fas fa-city"></i>
+          <h3>Fasilitas per Kecamatan</h3>
+        </div>
+        <canvas id="barChart"></canvas>
+        <div class="chart-info">
+          <span class="highlight">3 kecamatan</span> punya <strong>5 fasilitas</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats-summary">
+      <div class="stat-card">
+        <div class="stat-icon"><i class="fas fa-trash-alt"></i></div>
+        <div class="stat-number">23</div>
+        <div class="stat-label">Total Fasilitas</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon"><i class="fas fa-map-marked-alt"></i></div>
+        <div class="stat-number">10</div>
+        <div class="stat-label">Kecamatan Tercover</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon"><i class="fas fa-recycle"></i></div>
+        <div class="stat-number">4</div>
+        <div class="stat-label">Jenis Fasilitas</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Tunggu DOM siap
+  document.addEventListener('DOMContentLoaded', () => {
+    fetch('databaru.csv')
+      .then(r => r.text())
+      .then(csv => {
+        const rows = csv.split('\n').slice(1).filter(r => r.trim());
+        const kec = {}, jenis = {TPS:0, BSI:0, TPA:0, TPST:0};
+
+        rows.forEach(r => {
+          const p = r.split(';');
+          const loc = p[2] || '';
+          const match = loc.match(/Kec\. ([^,]+)/);
+          const k = match ? match[1].trim() : 'Unknown';
+          const j = p[5]?.trim();
+
+          kec[k] = (kec[k] || 0) + 1;
+          if (jenis[j] !== undefined) jenis[j]++;
+        });
+
+        // Animasi muncul saat scroll
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              createCharts(kec, jenis);
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.3 });
+
+        observer.observe(document.querySelector('.chart-section'));
+
+        function createCharts(kecData, jenisData) {
+          // Pie Chart
+          new Chart('pieChart', {
+            type: 'doughnut',
+            data: {
+              labels: ['TPS', 'Bank Sampah', 'TPA', 'TPST'],
+              datasets: [{
+                data: Object.values(jenisData),
+                backgroundColor: ['#2ecc71', '#27ae60', '#f1c40f', '#3498db'],
+                borderWidth: 4,
+                borderColor: '#fff',
+                hoverOffset: 15
+              }]
+            },
+            options: {
+              responsive: true,
+              cutout: '65%',
+              plugins: {
+                legend: { position: 'bottom', labels: { padding: 20, font: { size: 13 } } },
+                tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.raw} lokasi` } }
+              },
+              animation: { duration: 2000, easing: 'easeOutQuart' }
+            }
+          });
+
+          // Bar Chart
+          new Chart('barChart', {
+            type: 'bar',
+            data: {
+              labels: Object.keys(kecData),
+              datasets: [{
+                label: 'Jumlah',
+                data: Object.values(kecData),
+                backgroundColor: '#27ae60',
+                borderRadius: 10,
+                borderSkipped: false
+              }]
+            },
+            options: {
+              indexAxis: 'y',
+              plugins: { legend: { display: false } },
+              scales: {
+                x: { ticks: { stepSize: 1, color: '#555' }, grid: { display: false } },
+                y: { grid: { color: 'rgba(0,0,0,0.05)' } }
+              },
+              animation: { duration: 1800 }
+            }
+          });
+        }
+      });
+  });
+</script>
+
+    <!-- Peta GIS -->
+    <section class="map-section" id="map">
+      <h2>Peta Persebaran Fasilitas Pengelolaan Sampah</h2>
+      <div class="map-box">
+        <iframe
+          src="https://nova-nf.github.io/Peta-Persebaran-Tempat-Pengelolaan-sampah-Samarinda/#11/-0.4919/117.2235"
+          allowfullscreen
+          loading="lazy">
+        </iframe>
+      </div>
+    </section>
+
+    <!-- Kontak -->
+    <section id="contact">
+      <h2>Hubungi Kami</h2>
+      <p><i class="fas fa-envelope"></i> info@fasilitassampahsamarinda</p>
+      <p><i class="fas fa-phone"></i> +62 812-3456-7890</p>
+    </section>
+  </div>
+
+      <!-- Footer -->
+    <footer>
+      <p>© 2025 CalonOrangSukses. Dibuat untuk bumi yang lebih hijau.</p>
+    </footer>
+
+  </div>
+<!-- SwiperJS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+  // Inisialisasi Swiper
+  const swiper = new Swiper(".terminology-swiper", {
+    slidesPerView: 1.2,
+    spaceBetween: 25,
+    centeredSlides: true,
+    grabCursor: true,
+    loop: true,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    breakpoints: {
+      768: { slidesPerView: 2.5 },
+      1024: { slidesPerView: 3 },
+    },
+  });
+
+  // Lightbox logic
+  const lightbox = document.getElementById('termLightbox');
+  const title = document.getElementById('lightbox-title');
+  const desc = document.getElementById('lightbox-desc');
+  const close = document.querySelector('.close');
+
+  document.querySelectorAll('.term-card').forEach(card => {
+    card.addEventListener('click', () => {
+      title.textContent = card.dataset.term;
+      desc.textContent = card.dataset.desc;
+      lightbox.style.display = 'flex';
+    });
+  });
+
+  close.addEventListener('click', () => lightbox.style.display = 'none');
+  window.addEventListener('click', e => {
+    if (e.target === lightbox) lightbox.style.display = 'none';
+  });
+</script>
+
+</body>
+</html>
